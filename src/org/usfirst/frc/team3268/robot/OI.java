@@ -2,6 +2,7 @@ package org.usfirst.frc.team3268.robot;
 
 import org.usfirst.frc.team3268.robot.commands.drive.ReverseDrive;
 import org.usfirst.frc.team3268.robot.commands.firing.FireCommand;
+import org.usfirst.frc.team3268.robot.commands.firing.ReleaseBallCommand;
 import org.usfirst.frc.team3268.robot.commands.pickup.PneumaticDownCommand;
 import org.usfirst.frc.team3268.robot.commands.pickup.PneumaticUpCommand;
 import org.usfirst.frc.team3268.robot.commands.pickup.SpitCommand;
@@ -19,6 +20,8 @@ public class OI {
     
     private final JoystickButton firingZero = new JoystickButton(lStick, 1), firingLow = new JoystickButton(lStick, 5), firingHigh = new JoystickButton(lStick, 2);
     
+    private final JoystickButton firingServo = new JoystickButton(rStick, 1);
+    
     public OI() {
     	toggleDriveButton.toggleWhenPressed(new ReverseDrive());
     	
@@ -29,6 +32,8 @@ public class OI {
     	firingZero.whenPressed(new FireCommand(0.0));
     	firingLow.whenPressed(new FireCommand(0.3));
     	firingHigh.whenPressed(new FireCommand(0.5));
+    	
+    	firingServo.whileHeld(new ReleaseBallCommand());
     }
 }
 
