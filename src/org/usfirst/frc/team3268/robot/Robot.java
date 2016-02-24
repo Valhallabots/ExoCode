@@ -2,6 +2,7 @@
 package org.usfirst.frc.team3268.robot;
 
 import org.usfirst.frc.team3268.robot.subsystems.DriveSystem;
+import org.usfirst.frc.team3268.robot.subsystems.FiringServoSystem;
 import org.usfirst.frc.team3268.robot.subsystems.FiringWheelsSystem;
 import org.usfirst.frc.team3268.robot.subsystems.PickupPneumaticsSystem;
 import org.usfirst.frc.team3268.robot.subsystems.PickupSystem;
@@ -17,6 +18,7 @@ public class Robot extends IterativeRobot {
 	public static PickupSystem pickup;
 	public static PickupPneumaticsSystem pickupPneumatics;
 	public static FiringWheelsSystem firingWheels;
+	public static FiringServoSystem firingServo;
 	
 	public static OI oi;
 
@@ -27,6 +29,7 @@ public class Robot extends IterativeRobot {
 		pickup = new PickupSystem();
 		pickupPneumatics = new PickupPneumaticsSystem();
 		firingWheels = new FiringWheelsSystem();
+		firingServo = new FiringServoSystem();
 		
 		oi = new OI();
     }
