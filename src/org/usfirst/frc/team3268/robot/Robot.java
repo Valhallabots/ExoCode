@@ -2,6 +2,7 @@
 package org.usfirst.frc.team3268.robot;
 
 import org.usfirst.frc.team3268.robot.subsystems.DriveSystem;
+import org.usfirst.frc.team3268.robot.subsystems.PickupSystem;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -11,6 +12,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
 	public static DriveSystem drive;
+	public static PickupSystem pickup;
 	
 	public static OI oi;
 
@@ -18,6 +20,7 @@ public class Robot extends IterativeRobot {
     
     public void robotInit() {
 		drive = new DriveSystem();
+		pickup = new PickupSystem();
 		
 		oi = new OI();
     }
