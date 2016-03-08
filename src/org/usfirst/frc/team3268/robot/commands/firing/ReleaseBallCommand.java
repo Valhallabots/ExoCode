@@ -12,6 +12,7 @@ public class ReleaseBallCommand extends Command {
     }
 
     protected void initialize() {
+    	setTimeout(0.25);
     }
 
     protected void execute() {
@@ -19,7 +20,7 @@ public class ReleaseBallCommand extends Command {
     }
 
     protected boolean isFinished() {
-        return false;
+        return isTimedOut();
     }
 
     protected void end() {

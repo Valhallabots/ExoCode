@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3268.robot;
 
+import org.usfirst.frc.team3268.robot.commands.drive.AutoAlignDrive;
 import org.usfirst.frc.team3268.robot.commands.drive.ReverseDrive;
 import org.usfirst.frc.team3268.robot.commands.firing.FireCommand;
 import org.usfirst.frc.team3268.robot.commands.firing.ReleaseBallCommand;
@@ -10,6 +11,7 @@ import org.usfirst.frc.team3268.robot.commands.pickup.SuckCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 public class OI {
 	public final Joystick lStick = new Joystick(0), rStick = new Joystick(1);
@@ -22,6 +24,10 @@ public class OI {
     
     private final JoystickButton firingServo = new JoystickButton(rStick, 1);
     
+    private final JoystickButton autoAlign = new JoystickButton(lStick, 3);
+    
+    public final NetworkTable grip = NetworkTable.getTable("GRIP");
+    
     public OI() {
     	toggleDriveButton.toggleWhenPressed(new ReverseDrive());
     	
@@ -30,10 +36,11 @@ public class OI {
     	lifterUp.whenPressed(new PneumaticUpCommand());
     	lifterDown.whenPressed(new PneumaticDownCommand());
     	firingZero.whenPressed(new FireCommand(0.0));
-    	firingLow.whenPressed(new FireCommand(0.3));
-    	firingHigh.whenPressed(new FireCommand(0.5));
+    	firingLow.whenPressed(new FireCommand(0.4));
+    	firingHigh.whenPressed(new FireCommand(0.8));
     	
-    	firingServo.whileHeld(new ReleaseBallCommand());
+    	firingServo.whenPressed(new ReleaseBallCommand());
+    	autoAlign.whileHeld(new AutoAlignDrive());
     }
 }
 
