@@ -5,19 +5,19 @@ import org.usfirst.frc.team3268.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveToDefenseCommand extends Command {
+public class SimpleTraverseDefenseCommand extends Command {
 
 	private double Kp = 0.03;
 	
 	private double startAngle = Double.NaN;
 	
-    public DriveToDefenseCommand() {
+    public SimpleTraverseDefenseCommand() {
         requires(Robot.drive);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	setTimeout(1.0);
+    	setTimeout(3.0);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -25,7 +25,7 @@ public class DriveToDefenseCommand extends Command {
     	if (Double.isNaN(startAngle))
     		startAngle = RobotMap.gyro.getAngle();
     	
-    	Robot.drive.driveHelper.drive(-0.6, -(RobotMap.gyro.getAngle() - startAngle) * Kp);
+    	Robot.drive.driveHelper.drive(-0.7, -(RobotMap.gyro.getAngle() - startAngle) * Kp);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -2,6 +2,7 @@
 package org.usfirst.frc.team3268.robot;
 
 import org.usfirst.frc.team3268.robot.commands.auton.DriveToDefenseCommand;
+import org.usfirst.frc.team3268.robot.commands.auton.SimpleTraverseGroup;
 import org.usfirst.frc.team3268.robot.subsystems.DriveSystem;
 import org.usfirst.frc.team3268.robot.subsystems.FiringServoSystem;
 import org.usfirst.frc.team3268.robot.subsystems.FiringWheelsSystem;
@@ -40,6 +41,7 @@ public class Robot extends IterativeRobot {
 		
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("Drive to Defense", new DriveToDefenseCommand());
+		autoChooser.addObject("Drive to and Traverse", new SimpleTraverseGroup());
 		
 		SmartDashboard.putData("Autonomous Command", autoChooser);
     }
