@@ -1,7 +1,9 @@
 package org.usfirst.frc.team3268.robot.commands.drive;
 
 import org.usfirst.frc.team3268.robot.Robot;
+import org.usfirst.frc.team3268.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class StandardDrive extends Command {
@@ -14,7 +16,12 @@ public class StandardDrive extends Command {
     }
 
     protected void execute() {
-    	Robot.drive.driveHelper.tankDrive(-Robot.oi.lStick.getY(), -Robot.oi.rStick.getY());
+    	double driveAux = RobotMap.solenoid.get().equals(Value.kForward) ? Robot.oi.rStick.getY() : -Robot.oi.rStick.getY();
+    	
+    	double drive = Robot.oi.lStick.getY();
+    	double rotate = (Robot.oi.lStick.getX() * 0.8) + (Robot.oi.rStick.getX() * 0.8);
+    	
+    	Robot.drive.driveHelper.arcadeDrive(-drive + (driveAux * 0.8), -rotate);
     }
 
     protected boolean isFinished() {

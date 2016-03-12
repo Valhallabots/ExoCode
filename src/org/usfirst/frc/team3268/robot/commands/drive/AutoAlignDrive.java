@@ -67,7 +67,7 @@ public class AutoAlignDrive extends Command {
 			double c = 0.49964;
 			double turnVal = a * offMag * offMag + b * offMag + c;
 			
-			Robot.drive.driveHelper.arcadeDrive(0, -Math.signum(offset) * turnVal);
+			Robot.drive.driveHelper.arcadeDrive(0, (-offset * 0.003));
 		}
     }
 
