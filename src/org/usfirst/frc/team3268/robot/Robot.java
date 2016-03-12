@@ -9,6 +9,8 @@ import org.usfirst.frc.team3268.robot.subsystems.FiringWheelsSystem;
 import org.usfirst.frc.team3268.robot.subsystems.PickupPneumaticsSystem;
 import org.usfirst.frc.team3268.robot.subsystems.PickupSystem;
 
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -52,6 +54,7 @@ public class Robot extends IterativeRobot {
 	
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		RobotMap.ledThrough.set(false);
 	}
 	
     public void autonomousInit() {
@@ -63,6 +66,25 @@ public class Robot extends IterativeRobot {
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+		RobotMap.ledThrough.set(true);
+		Alliance alliance = DriverStation.getInstance().getAlliance();
+		
+		int r = 0;
+		int g = 0;
+		int b = 0;
+		
+		if (alliance.equals(Alliance.Red)) {
+			r = 4095;
+		} else if (alliance.equals(Alliance.Blue)) {
+			b = 4095;
+		} else {
+			r = 4095;
+			g = 4095;
+		}
+		
+		RobotMap.ledR.setRaw(r);
+		RobotMap.ledG.setRaw(g);
+		RobotMap.ledB.setRaw(b);
     }
 
     public void teleopInit() {
@@ -75,6 +97,7 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+		RobotMap.ledThrough.set(true);
     }
     
     public void testPeriodic() {

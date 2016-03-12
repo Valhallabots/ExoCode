@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class SimpleTraverseDefenseCommand extends Command {
 
-	private double Kp = 0.03;
+	private double Kp = 0.06;
 	
 	private double startAngle = Double.NaN;
 	
@@ -25,7 +25,7 @@ public class SimpleTraverseDefenseCommand extends Command {
     	if (Double.isNaN(startAngle))
     		startAngle = RobotMap.gyro.getAngle();
     	
-    	Robot.drive.driveHelper.drive(-0.7, -(RobotMap.gyro.getAngle() - startAngle) * Kp);
+    	Robot.drive.driveHelper.drive(-0.7, (RobotMap.gyro.getAngle() - startAngle) * Kp);
     }
 
     // Make this return true when this Command no longer needs to run execute()
