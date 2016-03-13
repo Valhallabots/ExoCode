@@ -12,6 +12,7 @@ import org.usfirst.frc.team3268.robot.subsystems.PickupSystem;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -54,7 +55,6 @@ public class Robot extends IterativeRobot {
 	
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-		RobotMap.ledThrough.set(false);
 	}
 	
     public void autonomousInit() {
@@ -62,29 +62,23 @@ public class Robot extends IterativeRobot {
     	
     	// schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
+//       	Alliance alliance = DriverStation.getInstance().getAlliance();
+//		
+//       	int r = 0;
+//		int b = 0;
+//		
+//		if (alliance.equals(Alliance.Red)) {
+//			r = 255;
+//		} else if (alliance.equals(Alliance.Blue)) {
+//			b = 255;
+//		}
+//		
+//		RobotMap.ledR.setRaw(r);
+//		RobotMap.ledB.setRaw(b);
     }
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
-		RobotMap.ledThrough.set(true);
-		Alliance alliance = DriverStation.getInstance().getAlliance();
-		
-		int r = 0;
-		int g = 0;
-		int b = 0;
-		
-		if (alliance.equals(Alliance.Red)) {
-			r = 4095;
-		} else if (alliance.equals(Alliance.Blue)) {
-			b = 4095;
-		} else {
-			r = 4095;
-			g = 4095;
-		}
-		
-		RobotMap.ledR.setRaw(r);
-		RobotMap.ledG.setRaw(g);
-		RobotMap.ledB.setRaw(b);
     }
 
     public void teleopInit() {
@@ -93,11 +87,27 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+//        Alliance alliance = DriverStation.getInstance().getAlliance();
+//		
+//		int r = 0;
+//		int b = 0;
+//		
+////		if (alliance.equals(Alliance.Red)) {
+////			r = 255;
+////		} else if (alliance.equals(Alliance.Blue)) {
+////			b = 255;
+////		}
+//		
+//		r = 0;
+//		
+//		RobotMap.ledR.setPeriodMultiplier(PWM.PeriodMultiplier.k4X);
+//		RobotMap.ledB.setPeriodMultiplier(PWM.PeriodMultiplier.k4X);
+//		RobotMap.ledR.setRaw(0);
+//		RobotMap.ledB.setRaw(255);
     }
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-		RobotMap.ledThrough.set(true);
     }
     
     public void testPeriodic() {

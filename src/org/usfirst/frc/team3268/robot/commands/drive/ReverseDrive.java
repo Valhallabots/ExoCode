@@ -5,6 +5,7 @@ import org.usfirst.frc.team3268.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ReverseDrive extends Command {
 
@@ -16,12 +17,14 @@ public class ReverseDrive extends Command {
     }
 
     protected void execute() {
+    	SmartDashboard.putBoolean("Inverted Drive", true);
+    	
     	double driveAux = RobotMap.solenoid.get().equals(Value.kForward) ? Robot.oi.rStick.getY() : -Robot.oi.rStick.getY();
     	
-    	double drive = Robot.oi.lStick.getY();
-    	double rotate = (Robot.oi.lStick.getX() * 0.8) + (Robot.oi.rStick.getX() * 0.8);
+    	double drive = Robot.oi.lStick.getY() * 0.8;
+    	double rotate = (Robot.oi.lStick.getX() * 0.9) + (Robot.oi.rStick.getX() * 0.8);
     	
-    	Robot.drive.driveHelper.arcadeDrive(drive + (driveAux * 0.8), -rotate);
+    	Robot.drive.arcadeDrive(drive + (driveAux * 0.6), -rotate);
     }
 
     protected boolean isFinished() {
@@ -29,10 +32,10 @@ public class ReverseDrive extends Command {
     }
 
     protected void end() {
-    	Robot.drive.driveHelper.tankDrive(0, 0);
+    	Robot.drive.arcadeDrive(0, 0);
     }
 
     protected void interrupted() {
-    	Robot.drive.driveHelper.tankDrive(0, 0);
+    	Robot.drive.arcadeDrive(0, 0);
     }
 }

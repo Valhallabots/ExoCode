@@ -3,11 +3,12 @@ package org.usfirst.frc.team3268.robot.commands.auton;
 import org.usfirst.frc.team3268.robot.Robot;
 import org.usfirst.frc.team3268.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveToDefenseCommand extends Command {
 
-	private double Kp = 0.06;
+	private double Kp = 0.0;
 	
 	private double startAngle = Double.NaN;
 	
@@ -17,15 +18,17 @@ public class DriveToDefenseCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	setTimeout(1.0);
+    	setTimeout(0.5);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	RobotMap.solenoid.set(Value.kForward);
+    	
     	if (Double.isNaN(startAngle))
     		startAngle = RobotMap.gyro.getAngle();
     	
-    	Robot.drive.driveHelper.drive(-0.6, (RobotMap.gyro.getAngle() - startAngle) * Kp);
+    	Robot.drive.driveHelper.drive(0.6, (RobotMap.gyro.getAngle() - startAngle) * Kp);
     }
 
     // Make this return true when this Command no longer needs to run execute()

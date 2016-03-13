@@ -14,7 +14,7 @@ public class SuckCommand extends Command {
     }
 
     protected void execute() {
-    	RobotMap.intake.set(1.0);
+    	RobotMap.intake.set(0.5);
     }
 
     protected boolean isFinished() {
