@@ -24,7 +24,7 @@ public class OI {
     
     private final JoystickButton firingServo = new JoystickButton(rStick, 1);
     
-    private final JoystickButton autoAlign = new JoystickButton(lStick, 2);
+    private final JoystickButton autoAlign = new JoystickButton(rStick, 2);
     
     public final NetworkTable grip = NetworkTable.getTable("GRIP");
     

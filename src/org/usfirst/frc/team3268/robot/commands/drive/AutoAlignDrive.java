@@ -53,21 +53,45 @@ public class AutoAlignDrive extends Command {
 		}
 		
 		double[] targetAreas = Robot.oi.grip.getNumberArray("targets/area", new double[0]);
+		double[] targetCYs = Robot.oi.grip.getNumberArray("targets/centerY", new double[0]);
 
-		double offset = cX - 320;
+		double offset = cX - 160;
 		double offMag = Math.abs(offset);
 		
 		SmartDashboard.putNumber("Area", targetAreas.length == 0 ? -1 : targetAreas[index]);
+		SmartDashboard.putNumber("CenterY", targetCYs.length == 0 ? -1 : targetCYs[index]);
 			
-		if (offMag < 10) {
+		int closeEnough = 5;
+		
+		if (offMag < closeEnough) {
 			Robot.drive.driveHelper.arcadeDrive(0, 0);
-		} else {
-			double a = 9.8485 * Math.pow(10, -7);
-			double b = -0.0000015152;
-			double c = 0.49964;
-			double turnVal = a * offMag * offMag + b * offMag + c;
+		} else {			
+			double turning = 0;
 			
-			Robot.drive.driveHelper.arcadeDrive(0, (-offset * 0.003));
+			SmartDashboard.putNumber("Offset", offset);
+			
+			if (offset < -closeEnough) {
+				turning = 0.75;
+			}
+			if (offset > closeEnough) {
+				turning = -0.75;
+			}
+			
+			double forward = 0;
+			
+			int minY = 100, maxY = 110;
+			
+			boolean yGood = targetCYs[index] < minY || targetCYs[index] > maxY;
+			
+			if (!yGood || targetAreas[index] <= 250) {
+				if (targetCYs[index] < minY) {
+					forward = -0.6;
+				} else if (targetCYs[index] > maxY) {
+					forward = 0.6;
+				}
+			}
+			
+			Robot.drive.arcadeDrive(forward, turning);
 		}
     }
 
