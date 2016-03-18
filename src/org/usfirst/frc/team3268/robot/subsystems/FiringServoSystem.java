@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class FiringServoSystem extends Subsystem {
 
     public void initDefaultCommand() {
-    	setDefaultCommand(new HoldBallCommand());
+//    	setDefaultCommand(new HoldBallCommand());
     }
 }
 

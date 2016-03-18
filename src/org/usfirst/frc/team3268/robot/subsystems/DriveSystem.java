@@ -14,7 +14,6 @@ public class DriveSystem extends Subsystem {
     public DriveSystem() {
     	driveHelper = new RobotDrive(RobotMap.leftDrive, RobotMap.rightDrive);
     	driveHelper2 = new RobotDrive(RobotMap.leftDrive2, RobotMap.rightDrive2);
-    	RobotMap.rightDrive2.setInverted(true);
     }
     
 	public void initDefaultCommand() {
@@ -23,12 +22,12 @@ public class DriveSystem extends Subsystem {
 	
 	public void arcadeDrive(double forwards, double turn) {
 		driveHelper.arcadeDrive(forwards, turn);
-		driveHelper2.arcadeDrive(forwards, -turn);
+		driveHelper2.arcadeDrive(forwards, turn);
 	}
 	
 	public void drive(double forwards, double turn) {
 		driveHelper.drive(forwards, turn);
-		driveHelper2.drive(forwards, -turn);
+		driveHelper2.drive(forwards, turn);
 	}
 }
 
