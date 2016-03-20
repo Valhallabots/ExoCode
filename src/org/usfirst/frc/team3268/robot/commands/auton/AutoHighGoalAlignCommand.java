@@ -34,6 +34,7 @@ public class AutoHighGoalAlignCommand extends Command {
 
 		if (targetCXs == null || targetCXs.length == 0) {
 			done = false;
+			Robot.drive.arcadeDrive(0, 0.6);
 			return;
 		}
 
