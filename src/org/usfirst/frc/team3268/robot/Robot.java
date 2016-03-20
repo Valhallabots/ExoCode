@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PWM;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -31,9 +32,13 @@ public class Robot extends IterativeRobot {
 
 	private static SendableChooser autoChooser;
 	
+	private static PowerDistributionPanel pdp;
+	
     Command autonomousCommand;
     
     public void robotInit() {
+    	pdp = new PowerDistributionPanel();
+    	
 		drive = new DriveSystem();
 		pickup = new PickupSystem();
 		pickupPneumatics = new PickupPneumaticsSystem();
@@ -42,11 +47,15 @@ public class Robot extends IterativeRobot {
 		
 		oi = new OI();
 		
-		autoChooser = new SendableChooser();
-		autoChooser.addDefault("Drive to Defense", new DriveToDefenseCommand());
-		autoChooser.addObject("Drive to and Traverse", new SimpleTraverseGroup());
+		SmartDashboard.putBoolean("Auto Traverse Defense?", true);
 		
-		SmartDashboard.putData("Autonomous Command", autoChooser);
+		autonomousCommand = new DriveToDefenseCommand();
+		
+//		autoChooser = new SendableChooser();
+//		autoChooser.addDefault("Drive to Defense", new DriveToDefenseCommand());
+//		autoChooser.addObject("Drive to and Traverse", new SimpleTraverseGroup());
+		
+//		SmartDashboard.putData("Autonomous Command", autoChooser);
     }
 	
     public void disabledInit(){
@@ -58,7 +67,7 @@ public class Robot extends IterativeRobot {
 	}
 	
     public void autonomousInit() {
-    	autonomousCommand = (Command) autoChooser.getSelected();
+//    	autonomousCommand = (Command) autoChooser.getSelected();
     	
     	// schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
@@ -79,6 +88,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        updateSDElectricity();
     }
 
     public void teleopInit() {
@@ -108,9 +118,16 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        updateSDElectricity();
     }
     
     public void testPeriodic() {
         LiveWindow.run();
+    }
+    
+    public void updateSDElectricity() {
+    	for (int i = 0; i < 16; i++) {
+        	SmartDashboard.putNumber("Current " + i, pdp.getCurrent(i));
+        }
     }
 }

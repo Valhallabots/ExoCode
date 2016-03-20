@@ -31,16 +31,16 @@ public class OI {
     public OI() {
     	toggleDriveButton.toggleWhenPressed(new ReverseDrive());
     	
-//    	suckButton.whileHeld(new SuckCommand());
-//    	spitButton.whileHeld(new SpitCommand());
-//    	lifterUp.whenPressed(new PneumaticUpCommand());
-//    	lifterDown.whenPressed(new PneumaticDownCommand());
-//    	firingZero.whenPressed(new FireCommand(0.0));
-//    	firingLow.whenPressed(new FireCommand(0.5));
-//    	firingHigh.whenPressed(new FireCommand(0.8));
-//    	
-//    	firingServo.whenPressed(new ReleaseBallCommand());
-//    	autoAlign.whileHeld(new AutoAlignDrive());
+    	suckButton.whileHeld(new SuckCommand());
+    	spitButton.whileHeld(new SpitCommand());
+    	lifterUp.whenPressed(new PneumaticUpCommand());
+    	lifterDown.whenPressed(new PneumaticDownCommand());
+    	firingZero.whenPressed(new FireCommand(0.0));
+    	firingLow.whenPressed(new FireCommand(0.5));
+    	firingHigh.whenPressed(new FireCommand(0.8));
+    	
+    	firingServo.whenPressed(new ReleaseBallCommand());
+    	autoAlign.whileHeld(new AutoAlignDrive());
     }
 }
 

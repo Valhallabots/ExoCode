@@ -20,6 +20,7 @@ public class AutoAlignDrive extends Command {
     }
 
     protected void execute() {
+    	// 167, 178
     	if (Robot.oi.grip == null) return;
     	
     	double[] targetCXs = Robot.oi.grip.getNumberArray("targets/centerX", new double[0]);
@@ -61,7 +62,7 @@ public class AutoAlignDrive extends Command {
 		SmartDashboard.putNumber("Area", targetAreas.length == 0 ? -1 : targetAreas[index]);
 		SmartDashboard.putNumber("CenterY", targetCYs.length == 0 ? -1 : targetCYs[index]);
 			
-		int closeEnough = 5;
+		int closeEnough = 10;
 		
 		if (offMag < closeEnough) {
 			Robot.drive.driveHelper.arcadeDrive(0, 0);
@@ -70,24 +71,34 @@ public class AutoAlignDrive extends Command {
 			
 			SmartDashboard.putNumber("Offset", offset);
 			
+			double magnitude = Math.abs(offset) < 100 ? 0.5 : 0.7;
+			
 			if (offset < -closeEnough) {
-				turning = 0.75;
+				turning = -magnitude;
 			}
 			if (offset > closeEnough) {
-				turning = -0.75;
+				turning = magnitude;
 			}
 			
 			double forward = 0;
 			
-			int minY = 100, maxY = 110;
+			int minY = 160, maxY = 180;
 			
-			boolean yGood = targetCYs[index] < minY || targetCYs[index] > maxY;
+			boolean yGood = targetCYs[index] > minY && targetCYs[index] < maxY;
 			
-			if (!yGood || targetAreas[index] <= 250) {
+			double vertOffset = 0;
+			
+			if (targetCYs[index] < minY) {
+				vertOffset = targetCYs[index] - minY;
+			} else if (targetCYs[index] > maxY) {
+				vertOffset = targetCYs[index] - maxY;
+			}
+			
+			if (!yGood) {
 				if (targetCYs[index] < minY) {
-					forward = -0.6;
+					forward = Math.abs(vertOffset) < 30 ? 0.55 : 0.6;
 				} else if (targetCYs[index] > maxY) {
-					forward = 0.6;
+					forward = Math.abs(vertOffset) < 30 ? -0.55 : -0.6;
 				}
 			}
 			

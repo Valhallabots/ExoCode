@@ -14,7 +14,8 @@ public class SpitCommand extends Command {
     }
 
     protected void execute() {
-    	RobotMap.intake.set(-0.5);
+    	RobotMap.intake1.set(-0.5);
+    	RobotMap.intake2.set(0.5);
     }
 
     protected boolean isFinished() {
@@ -22,10 +23,12 @@ public class SpitCommand extends Command {
     }
 
     protected void end() {
-    	RobotMap.intake.set(0.0);
+    	RobotMap.intake1.set(0.0);
+    	RobotMap.intake2.set(0.0);
     }
 
     protected void interrupted() {
-    	RobotMap.intake.set(0.0);
+    	RobotMap.intake1.set(0.0);
+    	RobotMap.intake2.set(0.0);
     }
 }

@@ -13,13 +13,13 @@ public class RobotMap {
 //    public static final CANTalon leftDrive = new CANTalon(1), rightDrive = new CANTalon(2);
 //    public static final Talon leftDrive2 = new Talon(5), rightDrive2 = new Talon(2);
     
-    public static final Talon leftDrive = new Talon(0), leftDrive2 = new Talon(1), rightDrive = new Talon(2), rightDrive2 = new Talon(3);
+    public static final Talon leftDrive = new Talon(3), leftDrive2 = new Talon(1), rightDrive = new Talon(2), rightDrive2 = new Talon(0);
     
-    public static final DoubleSolenoid solenoid = new DoubleSolenoid(7, 6);
+    public static final DoubleSolenoid solenoid = new DoubleSolenoid(1, 0);
     
-    public static final Talon intake = new Talon(6);
-    public static final Talon firingRight = new Talon(4), firingLeft = new Talon(7);
-    public static final Servo firingServo = new Servo(5);
+    public static final Talon intake1 = new Talon(6), intake2 = new Talon(7);
+    public static final Talon firingRight = new Talon(5), firingLeft = new Talon(4);
+    public static final Servo firingServo = new Servo(8);
     
     public static final Gyro gyro = new AnalogGyro(1);
 }
