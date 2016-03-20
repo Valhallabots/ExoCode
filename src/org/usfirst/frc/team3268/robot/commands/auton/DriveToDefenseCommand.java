@@ -13,8 +13,11 @@ public class DriveToDefenseCommand extends Command {
 	
 	private double startAngle = Double.NaN;
 	
-    public DriveToDefenseCommand() {
+	boolean forceLong = false;
+	
+    public DriveToDefenseCommand(boolean forceLong) {
         requires(Robot.drive);
+        this.forceLong = forceLong;
     }
 
     // Called just before this Command runs the first time
@@ -24,7 +27,7 @@ public class DriveToDefenseCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (SmartDashboard.getBoolean("Auto Traverse Defense?")) {
+    	if (SmartDashboard.getBoolean("Auto Traverse Defense?") || forceLong) {
     		setTimeout(2.5);
     	} else {
     		setTimeout(1.0);

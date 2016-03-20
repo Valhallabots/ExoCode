@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team3268.robot;
 
+import org.usfirst.frc.team3268.robot.commands.auton.FullAutoCommand;
 import org.usfirst.frc.team3268.robot.commands.auton.FullAutoHighGoalCommand;
 import org.usfirst.frc.team3268.robot.subsystems.DriveSystem;
 import org.usfirst.frc.team3268.robot.subsystems.FiringServoSystem;
@@ -45,8 +46,9 @@ public class Robot extends IterativeRobot {
 		
 		SmartDashboard.putBoolean("Auto Traverse Defense?", true);
 		
-//		autonomousCommand = new DriveToDefenseCommand();
-		autonomousCommand = new FullAutoHighGoalCommand();
+//		autonomousCommand = new DriveToDefenseCommand(false);
+//		autonomousCommand = new FullAutoHighGoalCommand(false);
+		autonomousCommand = new FullAutoCommand();
 		
 //		autoChooser = new SendableChooser();
 //		autoChooser.addDefault("Drive to Defense", new DriveToDefenseCommand());
