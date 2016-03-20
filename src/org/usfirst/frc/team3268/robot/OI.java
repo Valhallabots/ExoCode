@@ -1,8 +1,6 @@
 package org.usfirst.frc.team3268.robot;
 
-import org.usfirst.frc.team3268.robot.commands.auton.AutoHighGoalAlignSpam;
 import org.usfirst.frc.team3268.robot.commands.auton.FullAutoHighGoalCommand;
-import org.usfirst.frc.team3268.robot.commands.drive.AutoAlignDrive;
 import org.usfirst.frc.team3268.robot.commands.drive.ReverseDrive;
 import org.usfirst.frc.team3268.robot.commands.firing.FireCommand;
 import org.usfirst.frc.team3268.robot.commands.firing.ReleaseBallCommand;

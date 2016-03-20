@@ -20,7 +20,7 @@ public class ReverseDrive extends Command {
     	SmartDashboard.putBoolean("Inverted Drive", true);
     	
     	double driveAux = RobotMap.solenoid.get().equals(Value.kForward) ? Robot.oi.rStick.getY() : -Robot.oi.rStick.getY();
-    	
+
     	double drive = Robot.oi.lStick.getY() * (Robot.oi.lStick.getRawButton(1) ? 1.0 : 0.8);
     	double rotate = (Robot.oi.lStick.getX() * 0.75) + (Robot.oi.rStick.getX() * 0.8);
     	

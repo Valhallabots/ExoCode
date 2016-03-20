@@ -1,19 +1,14 @@
 
 package org.usfirst.frc.team3268.robot;
 
-import org.usfirst.frc.team3268.robot.commands.auton.DriveToDefenseCommand;
 import org.usfirst.frc.team3268.robot.commands.auton.FullAutoHighGoalCommand;
-import org.usfirst.frc.team3268.robot.commands.auton.SimpleTraverseGroup;
 import org.usfirst.frc.team3268.robot.subsystems.DriveSystem;
 import org.usfirst.frc.team3268.robot.subsystems.FiringServoSystem;
 import org.usfirst.frc.team3268.robot.subsystems.FiringWheelsSystem;
 import org.usfirst.frc.team3268.robot.subsystems.PickupPneumaticsSystem;
 import org.usfirst.frc.team3268.robot.subsystems.PickupSystem;
 
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
