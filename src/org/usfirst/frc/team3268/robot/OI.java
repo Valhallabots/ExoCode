@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3268.robot;
 
+import org.usfirst.frc.team3268.robot.commands.auton.AutoHighGoalAlignSpam;
+import org.usfirst.frc.team3268.robot.commands.auton.FullAutoHighGoalCommand;
 import org.usfirst.frc.team3268.robot.commands.drive.AutoAlignDrive;
 import org.usfirst.frc.team3268.robot.commands.drive.ReverseDrive;
 import org.usfirst.frc.team3268.robot.commands.firing.FireCommand;
@@ -40,7 +42,8 @@ public class OI {
     	firingHigh.whenPressed(new FireCommand(0.8));
     	
     	firingServo.whenPressed(new ReleaseBallCommand());
-    	autoAlign.whileHeld(new AutoAlignDrive());
+//    	autoAlign.whileHeld(new AutoAlignDrive());
+    	autoAlign.whenPressed(new FullAutoHighGoalCommand());
     }
 }
 
